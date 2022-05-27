@@ -8,31 +8,36 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  release:
-    name: Release
+  build:
+    name: Build and deploy Planetarium
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./apps/planetarium
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
-        with:
-          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
-          fetch-depth: 0
 
       - name: Setup Node.js 16.x
         uses: actions/setup-node@v2
         with:
           node-version: 16.x
 
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: ~/node_modules
+          key: cache-${{ hashFiles('**/yarn.lock') }}
+
       - name: Install Dependencies
         run: yarn
 
-      - name: Create Release Pull Request or Publish to npm
-        id: changesets
-        uses: changesets/action@v1
+      - name: Build
+        run: yarn build
+
+      - name: Deploy to github pages
+        uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
-          # This expects you to have a script called release which does a build for your packages and calls changeset publish
-          publish: yarn release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          branch: gh-pages
+          folder: dist
 

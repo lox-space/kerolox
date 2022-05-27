@@ -45,10 +45,10 @@ Using Turborepo simplifes managing your design system monorepo, as you can have 
 This Turborepo includes the following packages and applications:
 
 - `apps/docs`: Component documentation site with Storybook
-- `packages/@acme/core`: Core React components
-- `packages/@acme/utils`: Shared React utilities
-- `packages/@acme/tsconfig`: Shared `tsconfig.json`s used throughout the Turborepo
-- `packages/eslint-preset-acme`: ESLint preset
+- `packages/@openastrodynamics/core`: Core React components
+- `packages/@openastrodynamics/utils`: Shared React utilities
+- `packages/@openastrodynamics/tsconfig`: Shared `tsconfig.json`s used throughout the Turborepo
+- `packages/eslint-preset-openastrodynamics`: ESLint preset
 
 Each package and app is 100% [TypeScript](https://www.typescriptlang.org/). Yarn Workspaces enables us to "hoist" dependencies that are shared between packages to the root `package.json`. This means smaller `node_modules` folders and a better local dev experience. To install a dependency for the entire monorepo, use the `-W` workspaces flag with `yarn add`.
 
@@ -60,17 +60,17 @@ To make the core library code work across all browsers, we need to compile the r
 
 Running `yarn build` from the root of the Turborepo will run the `build` command defined in each package's `package.json` file. Turborepo runs each `build` in parallel and caches & hashes the output to speed up future builds.
 
-For `acme-core`, the `build` command is the following:
+For `openastrodynamics-core`, the `build` command is the following:
 
 ```bash
 tsup src/index.tsx --format esm,cjs --dts --external react
 ```
 
-`tsup` compiles `src/index.tsx`, which exports all of the components in the design system, into both ES Modules and CommonJS formats as well as their TypeScript types. The `package.json` for `acme-core` then instructs the consumer to select the correct format:
+`tsup` compiles `src/index.tsx`, which exports all of the components in the design system, into both ES Modules and CommonJS formats as well as their TypeScript types. The `package.json` for `openastrodynamics-core` then instructs the consumer to select the correct format:
 
-```json:acme-core/package.json
+```json:openastrodynamics-core/package.json
 {
-  "name": "@acme/core",
+  "name": "@openastrodynamics/core",
   "version": "0.0.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -79,10 +79,10 @@ tsup src/index.tsx --format esm,cjs --dts --external react
 }
 ```
 
-Run `yarn build` to confirm compilation is working correctly. You should see a folder `acme-core/dist` which contains the compiled output.
+Run `yarn build` to confirm compilation is working correctly. You should see a folder `openastrodynamics-core/dist` which contains the compiled output.
 
 ```bash
-acme-core
+openastrodynamics-core
 └── dist
     ├── index.d.ts  <-- Types
     ├── index.js    <-- CommonJS version
@@ -91,9 +91,9 @@ acme-core
 
 ## Components
 
-Each file inside of `acme-core/src` is a component inside our design system. For example:
+Each file inside of `openastrodynamics-core/src` is a component inside our design system. For example:
 
-```tsx:acme-core/src/Button.tsx
+```tsx:openastrodynamics-core/src/Button.tsx
 import * as React from 'react';
 
 export interface ButtonProps {
@@ -109,7 +109,7 @@ Button.displayName = 'Button';
 
 When adding a new file, ensure the component is also exported from the entry `index.tsx` file:
 
-```tsx:acme-core/src/index.tsx
+```tsx:openastrodynamics-core/src/index.tsx
 import * as React from "react";
 export { Button, type ButtonProps } from "./Button";
 // Add new component exports here
@@ -121,13 +121,13 @@ Storybook provides us with an interactive UI playground for our components. This
 
 - Use Vite to bundle stories instantly (in milliseconds)
 - Automatically find any stories inside the `stories/` folder
-- Support using module path aliases like `@acme-core` for imports
+- Support using module path aliases like `@openastrodynamics-core` for imports
 - Write MDX for component documentation pages
 
 For example, here's the included Story for our `Button` component:
 
 ```js:apps/docs/stories/button.stories.mdx
-import { Button } from '@acme-core/src';
+import { Button } from '@openastrodynamics-core/src';
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 
 <Meta title="Components/Button" component={Button} />
@@ -180,10 +180,10 @@ When you push your code to GitHub, the [GitHub Action](https://github.com/change
 turbo run build --filter=docs^... && changeset publish
 ```
 
-Turborepo runs the `build` script for all publishable packages (excluding docs) and publishes the packages to npm. By default, this example includes `acme` as the npm organization. To change this, do the following:
+Turborepo runs the `build` script for all publishable packages (excluding docs) and publishes the packages to npm. By default, this example includes `openastrodynamics` as the npm organization. To change this, do the following:
 
-- Rename folders in `packages/*` to replace `acme` with your desired scope
-- Search and replace `acme` with your desired scope
+- Rename folders in `packages/*` to replace `openastrodynamics` with your desired scope
+- Search and replace `openastrodynamics` with your desired scope
 - Re-run `yarn install`
 
 To publish packages to a private npm organization scope, **remove** the following from each of the `package.json`'s

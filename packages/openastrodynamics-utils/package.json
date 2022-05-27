@@ -1,5 +1,5 @@
 {
-  "name": "@acme/utils",
+  "name": "@openastrodynamics/utils",
   "version": "0.0.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -16,11 +16,11 @@
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "devDependencies": {
-    "@acme/tsconfig": "*",
+    "@openastrodynamics/tsconfig": "*",
     "@types/react": "^18.0.9",
     "@types/react-dom": "^18.0.4",
     "eslint": "^8.15.0",
-    "eslint-config-acme": "*",
+    "eslint-config-openastrodynamics": "*",
     "react": "^18.1.0",
     "tsup": "^5.10.1",
     "typescript": "^4.5.3"

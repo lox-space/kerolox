@@ -23,12 +23,6 @@ jobs:
         with:
           node-version: 16.x
 
-      - name: Cache node modules
-        uses: actions/cache@v2
-        with:
-          path: ~/node_modules
-          key: cache-${{ hashFiles('**/yarn.lock') }}
-
       - name: Install Dependencies
         run: yarn
 

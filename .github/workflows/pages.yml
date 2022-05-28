@@ -1,4 +1,4 @@
-name: Planetarium
+name: Pages
 
 on:
   push:
@@ -9,7 +9,7 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   build:
-    name: Build and deploy Planetarium
+    name: Deploy to GH Pages
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -18,10 +18,11 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v2
 
-      - name: Setup Node.js 16.x
+      - name: Setup Node.js environment
         uses: actions/setup-node@v2
         with:
-          node-version: 16.x
+          node-version: 16
+          cache: 'yarn'
 
       - name: Install Dependencies
         run: yarn
@@ -30,7 +31,7 @@ jobs:
         run: yarn build
 
       - name: Deploy to github pages
-        uses: JamesIves/github-pages-deploy-action@4.1.0
+        uses: JamesIves/github-pages-deploy-action@4.3.3
         with:
           branch: gh-pages
           folder: ./apps/planetarium/dist

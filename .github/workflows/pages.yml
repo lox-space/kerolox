@@ -11,9 +11,6 @@ jobs:
   build:
     name: Deploy to GH Pages
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./apps/planetarium
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2

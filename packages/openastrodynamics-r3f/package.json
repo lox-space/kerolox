@@ -19,6 +19,7 @@
     "@openastrodynamics/tsconfig": "*",
     "@types/react": "^18.0.9",
     "@types/react-dom": "^18.0.4",
+    "@types/three": "^0.140.0",
     "eslint": "^8.15.0",
     "eslint-config-openastrodynamics": "*",
     "react": "^18.1.0",
@@ -27,5 +28,11 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "@react-three/drei": "^9.11.3",
+    "@react-three/fiber": "^8.0.19",
+    "three": "^0.141.0",
+    "zustand": "^4.0.0-rc.1"
   }
 }

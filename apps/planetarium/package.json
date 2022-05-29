@@ -10,7 +10,11 @@
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.1.2",
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
     "@openastrodynamics/r3f": "*",
+    "framer-motion": "^6.3.4",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },

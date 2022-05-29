@@ -1,16 +1,13 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
-import Planetarium from '@openastrodynamics/r3f'
+import { Box } from "@chakra-ui/react";
+import Planetarium from "@openastrodynamics/r3f";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="App">
+    <Box className="App" h="100vh" w="100vw">
       <Planetarium />
-    </div>
-  )
+    </Box>
+  );
 }
 
-export default App
+export default App;

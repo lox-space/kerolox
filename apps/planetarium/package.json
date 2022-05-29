@@ -1,5 +1,5 @@
 {
-  "name": "planetarium",
+  "name": "@openastrodynamics/planetarium",
   "private": true,
   "version": "0.0.0",
   "scripts": {

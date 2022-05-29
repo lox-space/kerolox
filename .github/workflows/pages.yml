@@ -25,10 +25,10 @@ jobs:
           cache: 'npm'
 
       - name: Install Dependencies
-        run: yarn
+        run: npm install
 
       - name: Build
-        run: yarn build
+        run: npm run build
 
       - name: Deploy to github pages
         uses: JamesIves/github-pages-deploy-action@v4.3.3

@@ -10,8 +10,8 @@
     "dist/**"
   ],
   "scripts": {
-    "build": "tsup src/index.tsx --format esm,cjs --dts --external react --loader \".jpg=dataurl\"",
-    "dev": "tsup src/index.tsx --format esm,cjs --watch --dts --external react --loader \".jpg=dataurl\"",
+    "build": "tsup src/index.ts --format esm,cjs --dts --external react --loader \".jpg=dataurl\"",
+    "dev": "tsup src/index.ts --format esm,cjs --watch --dts --external react --loader \".jpg=dataurl\"",
     "lint": "TIMING=1 eslint src/**/*.ts* --fix",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },

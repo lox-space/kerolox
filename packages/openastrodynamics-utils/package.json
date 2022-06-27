@@ -17,13 +17,13 @@
   },
   "devDependencies": {
     "@openastrodynamics/tsconfig": "*",
-    "@types/react": "^18.0.9",
-    "@types/react-dom": "^18.0.4",
-    "eslint": "^8.15.0",
+    "@types/react": "^18.0.14",
+    "@types/react-dom": "^18.0.5",
+    "eslint": "^8.18.0",
     "eslint-config-openastrodynamics": "*",
-    "react": "^18.1.0",
-    "tsup": "^5.10.1",
-    "typescript": "^4.5.3"
+    "react": "^18.2.0",
+    "tsup": "^6.1.2",
+    "typescript": "^4.7.4"
   },
   "publishConfig": {
     "access": "public"

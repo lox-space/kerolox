@@ -10,28 +10,28 @@
     "dist/**"
   ],
   "scripts": {
-    "build": "tsup src/index.ts --format esm,cjs --dts --external react --loader \".jpg=dataurl\"",
-    "dev": "tsup src/index.ts --format esm,cjs --watch --dts --external react --loader \".jpg=dataurl\"",
+    "build": "tsup src/index.ts --format esm,cjs --dts --external react --loader \".jpg=dataurl\" --loader \".hdr=dataurl\"",
+    "dev": "tsup src/index.ts --format esm,cjs --watch --dts --external react --loader \".jpg=dataurl\" --loader \".hdr=dataurl\"",
     "lint": "TIMING=1 eslint src/**/*.ts* --fix",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "devDependencies": {
     "@openastrodynamics/tsconfig": "*",
-    "@types/react": "^18.0.9",
-    "@types/react-dom": "^18.0.4",
-    "@types/three": "^0.140.0",
-    "eslint": "^8.15.0",
+    "@types/react": "^18.0.14",
+    "@types/react-dom": "^18.0.5",
+    "@types/three": "^0.141.0",
+    "eslint": "^8.18.0",
     "eslint-config-openastrodynamics": "*",
-    "react": "^18.1.0",
-    "tsup": "^5.10.1",
-    "typescript": "^4.5.3"
+    "react": "^18.2.0",
+    "tsup": "^6.1.2",
+    "typescript": "^4.7.4"
   },
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@react-three/drei": "^9.11.3",
-    "@react-three/fiber": "^8.0.19",
+    "@react-three/drei": "^9.14.3",
+    "@react-three/fiber": "^8.0.27",
     "three": "^0.141.0",
     "zustand": "^4.0.0-rc.1"
   }

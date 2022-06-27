@@ -16,10 +16,10 @@
     "release": "turbo run build --filter=docs^... && changeset publish"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.22.0",
-    "eslint": "^8.15.0",
+    "@changesets/cli": "^2.23.0",
+    "eslint": "^8.18.0",
     "eslint-config-openastrodynamics": "*",
-    "prettier": "^2.5.1",
+    "prettier": "^2.7.1",
     "turbo": "latest"
   }
 }

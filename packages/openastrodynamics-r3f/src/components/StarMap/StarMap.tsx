@@ -1,11 +1,5 @@
 import { useThree } from "@react-three/fiber";
 import { CubeTextureLoader, sRGBEncoding } from "three";
-import star_map_plain_back from "./assets/plain_back.jpg";
-import star_map_plain_down from "./assets/plain_down.jpg";
-import star_map_plain_front from "./assets/plain_front.jpg";
-import star_map_plain_left from "./assets/plain_left.jpg";
-import star_map_plain_right from "./assets/plain_right.jpg";
-import star_map_plain_up from "./assets/plain_up.jpg";
 import star_map_bounds_back from "./assets/bounds_back.jpg";
 import star_map_bounds_down from "./assets/bounds_down.jpg";
 import star_map_bounds_front from "./assets/bounds_front.jpg";
@@ -24,6 +18,12 @@ import star_map_grid_front from "./assets/grid_front.jpg";
 import star_map_grid_left from "./assets/grid_left.jpg";
 import star_map_grid_right from "./assets/grid_right.jpg";
 import star_map_grid_up from "./assets/grid_up.jpg";
+import star_map_plain_back from "./assets/plain_back.jpg";
+import star_map_plain_down from "./assets/plain_down.jpg";
+import star_map_plain_front from "./assets/plain_front.jpg";
+import star_map_plain_left from "./assets/plain_left.jpg";
+import star_map_plain_right from "./assets/plain_right.jpg";
+import star_map_plain_up from "./assets/plain_up.jpg";
 
 const loader = new CubeTextureLoader();
 

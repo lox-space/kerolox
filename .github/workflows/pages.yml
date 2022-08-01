@@ -7,6 +7,10 @@ on:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
+defaults:
+  run:
+    shell: bash -l {0}
+
 jobs:
   build:
     name: Deploy to GH Pages
@@ -15,11 +19,14 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v2
 
+      - name: Install Mamba
+        uses: mamba-org/provision-with-micromamba@main
+
       - name: Setup Node.js environment
         uses: actions/setup-node@v2
         with:
           node-version: 16
-          cache: 'npm'
+          cache: "npm"
 
       - name: Install Dependencies
         run: npm install
@@ -32,4 +39,3 @@ jobs:
         with:
           branch: gh-pages
           folder: ./apps/planetarium/dist
-

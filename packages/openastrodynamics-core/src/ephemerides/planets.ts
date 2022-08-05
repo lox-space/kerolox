@@ -1,10 +1,11 @@
 import { Vector3 } from "three";
 import { modpi, TWOPI } from "../math";
+import { SECONDS_PER_DAY } from "../time";
 
 const DJ00 = 2451545.0;
 const DJM = 365250.0;
 const DAS2R = 4.848136811095359935899141e-6;
-const AU = 149597870.7; // km
+export const AU = 149597870.7; // km
 
 /* Gaussian constant */
 const GK = 0.01720209895;
@@ -143,21 +144,20 @@ export class Ephemeris {
     date2: number = 0.0,
     opts: Options = { unit: "km" }
   ) {
-    const pFactor = opts.unit === "km" ? AU : 1.0;
-
     const { da, de, di, ae, xp, xq, xsw, xcw } = this.meanElements(
       date1,
       date2
     );
+    const das = opts.unit === "km" ? da * AU : da;
 
     const xm2 = 2.0 * (xp * xcw - xq * xsw);
     const ci2 = Math.cos(di / 2.0);
 
-    const r = da * (1.0 - de * Math.cos(ae));
+    const r = das * (1.0 - de * Math.cos(ae));
 
-    const x = r * (xcw - xm2 * xp) * pFactor;
-    const y = r * (xsw + xm2 * xq) * pFactor;
-    const z = r * (-xm2 * ci2) * pFactor;
+    const x = r * (xcw - xm2 * xp);
+    const y = r * (xsw + xm2 * xq);
+    const z = r * (-xm2 * ci2);
 
     /* Rotate to equatorial. */
     pos.set(x, y * COSEPS - z * SINEPS, y * SINEPS + z * COSEPS);
@@ -169,14 +169,13 @@ export class Ephemeris {
     date2: number = 0.0,
     opts: Options = { unit: "km" }
   ) {
-    const vFactor = opts.unit === "km" ? AU * (1 / 86400) : 1.0;
-
     const { da, de, di, dp, xp, xq, xsw, xcw } = this.meanElements(
       date1,
       date2
     );
+    const gk = opts.unit === "km" ? GK * (AU / SECONDS_PER_DAY) : GK;
 
-    const v = GK * Math.sqrt((1.0 + 1.0 / this.amas) / (da * da * da));
+    const v = gk * Math.sqrt((1.0 + 1.0 / this.amas) / (da * da * da));
 
     const xf = da / Math.sqrt(1 - de * de);
     const ci2 = Math.cos(di / 2.0);
@@ -185,9 +184,9 @@ export class Ephemeris {
     const xpxq2 = 2 * xp * xq;
 
     /* Velocity (J2000.0 ecliptic xdot,ydot,zdot in au/d). */
-    const vx = v * ((-1.0 + 2.0 * xp * xp) * xms + xpxq2 * xmc) * vFactor;
-    const vy = v * ((1.0 - 2.0 * xq * xq) * xmc - xpxq2 * xms) * vFactor;
-    const vz = v * (2.0 * ci2 * (xp * xms + xq * xmc)) * vFactor;
+    const vx = v * ((-1.0 + 2.0 * xp * xp) * xms + xpxq2 * xmc);
+    const vy = v * ((1.0 - 2.0 * xq * xq) * xmc - xpxq2 * xms);
+    const vz = v * (2.0 * ci2 * (xp * xms + xq * xmc));
 
     /* Rotate to equatorial. */
     vel.set(vx, vy * COSEPS - vz * SINEPS, vy * SINEPS + vz * COSEPS);

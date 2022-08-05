@@ -8,7 +8,7 @@ describe("Simon-Bretagnon Ephemeris", () => {
     const date1 = 2400000.5;
     const date2 = 43999.9;
 
-    EPHEMERIDES.mercury.state(p, v, date1, date2);
+    EPHEMERIDES.mercury.state(p, v, date1, date2, { unit: "au" });
 
     expect(p.x).toBeCloseTo(0.2945293959257430832);
     expect(p.y).toBeCloseTo(-0.2452204176601049596);
@@ -24,7 +24,7 @@ describe("Simon-Bretagnon Ephemeris", () => {
     const date1 = 2400000.5;
     const date2 = -320000;
 
-    EPHEMERIDES.earthMoonBarycenter.state(p, v, date1, date2);
+    EPHEMERIDES.earthMoonBarycenter.state(p, v, date1, date2, { unit: "au" });
 
     expect(spy).toHaveBeenCalled();
     expect(p.x).toBeCloseTo(0.9308038666832975759);
@@ -42,7 +42,7 @@ describe("Simon-Bretagnon Ephemeris", () => {
     const date1 = 2400000.5;
     const date2 = 43999.9;
 
-    state(p, v, "mercury", date1, date2);
+    state(p, v, "mercury", date1, date2, { unit: "au" });
 
     expect(p.x).toBeCloseTo(0.2945293959257430832);
     expect(p.y).toBeCloseTo(-0.2452204176601049596);

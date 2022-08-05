@@ -1,9 +1,10 @@
 import { Vector3 } from "three";
 import { modpi, TWOPI } from "../math";
 
-const ERFA_DJ00 = 2451545.0;
-const ERFA_DJM = 365250.0;
-const ERFA_DAS2R = 4.848136811095359935899141e-6;
+const DJ00 = 2451545.0;
+const DJM = 365250.0;
+const DAS2R = 4.848136811095359935899141e-6;
+const AU = 149597870.7; // km
 
 /* Gaussian constant */
 const GK = 0.01720209895;
@@ -14,6 +15,10 @@ const COSEPS = 0.9174820620691818;
 
 /* Maximum number of iterations allowed to solve Kepler's equation */
 const KMAX = 10;
+
+type Options = {
+  unit: "km" | "au";
+};
 
 export class Ephemeris {
   amas: number;
@@ -60,9 +65,17 @@ export class Ephemeris {
     this.sl = Float32Array.from(sl);
   }
 
-  state(pos: Vector3, vel: Vector3, date1: number, date2: number) {
+  state(
+    pos: Vector3,
+    vel: Vector3,
+    date1: number,
+    date2: number,
+    opts: Options = { unit: "km" }
+  ) {
+    const unit = opts?.unit;
+
     /* Time: Julian millennia since J2000.0. */
-    const t = (date1 - ERFA_DJ00 + date2) / ERFA_DJM;
+    const t = (date1 - DJ00 + date2) / DJM;
 
     /* OK status unless remote date. */
     if (t > 1) console.warn("The requested date is later than the year 3000.");
@@ -72,17 +85,15 @@ export class Ephemeris {
     /* Compute the mean elements. */
     let da = this.a[0] + (this.a[1] + this.a[2] * t) * t;
     let dl =
-      (3600.0 * this.dlm[0] + (this.dlm[1] + this.dlm[2] * t) * t) * ERFA_DAS2R;
+      (3600.0 * this.dlm[0] + (this.dlm[1] + this.dlm[2] * t) * t) * DAS2R;
     let de = this.e[0] + (this.e[1] + this.e[2] * t) * t;
     let dp = modpi(
-      (3600.0 * this.pi[0] + (this.pi[1] + this.pi[2] * t) * t) * ERFA_DAS2R
+      (3600.0 * this.pi[0] + (this.pi[1] + this.pi[2] * t) * t) * DAS2R
     );
     let di =
-      (3600.0 * this.dinc[0] + (this.dinc[1] + this.dinc[2] * t) * t) *
-      ERFA_DAS2R;
+      (3600.0 * this.dinc[0] + (this.dinc[1] + this.dinc[2] * t) * t) * DAS2R;
     let dom = modpi(
-      (3600.0 * this.omega[0] + (this.omega[1] + this.omega[2] * t) * t) *
-        ERFA_DAS2R
+      (3600.0 * this.omega[0] + (this.omega[1] + this.omega[2] * t) * t) * DAS2R
     );
 
     /* Apply the trigonometric terms. */
@@ -141,18 +152,21 @@ export class Ephemeris {
     const xmc = (de * Math.cos(dp) + xcw) * xf;
     const xpxq2 = 2 * xp * xq;
 
+    const pFactor = unit === "km" ? AU : 1.0;
+    const vFactor = unit === "km" ? AU * (1 / 86400) : 1.0;
+
     /* Position (J2000.0 ecliptic x,y,z in au). */
-    const x = r * (xcw - xm2 * xp);
-    const y = r * (xsw + xm2 * xq);
-    const z = r * (-xm2 * ci2);
+    const x = r * (xcw - xm2 * xp) * pFactor;
+    const y = r * (xsw + xm2 * xq) * pFactor;
+    const z = r * (-xm2 * ci2) * pFactor;
 
     /* Rotate to equatorial. */
     pos.set(x, y * COSEPS - z * SINEPS, y * SINEPS + z * COSEPS);
 
     /* Velocity (J2000.0 ecliptic xdot,ydot,zdot in au/d). */
-    const vx = v * ((-1.0 + 2.0 * xp * xp) * xms + xpxq2 * xmc);
-    const vy = v * ((1.0 - 2.0 * xq * xq) * xmc - xpxq2 * xms);
-    const vz = v * (2.0 * ci2 * (xp * xms + xq * xmc));
+    const vx = v * ((-1.0 + 2.0 * xp * xp) * xms + xpxq2 * xmc) * vFactor;
+    const vy = v * ((1.0 - 2.0 * xq * xq) * xmc - xpxq2 * xms) * vFactor;
+    const vz = v * (2.0 * ci2 * (xp * xms + xq * xmc)) * vFactor;
 
     /* Rotate to equatorial. */
     vel.set(vx, vy * COSEPS - vz * SINEPS, vy * SINEPS + vz * COSEPS);
@@ -288,5 +302,6 @@ export const state = (
   vel: Vector3,
   planet: Planet,
   date1: number,
-  date2: number
-) => EPHEMERIDES[planet].state(pos, vel, date1, date2);
+  date2: number,
+  opts: Options = { unit: "km" }
+) => EPHEMERIDES[planet].state(pos, vel, date1, date2, opts);

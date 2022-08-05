@@ -1,8 +1,11 @@
+import * as React from 'react';
 import { IRenderMime } from '@jupyterlab/rendermime-interfaces';
+import { ReactWidget } from '@jupyterlab/apputils';
 
 import { JSONObject } from '@lumino/coreutils';
 
 import { Widget } from '@lumino/widgets';
+import Planetarium from '@openastrodynamics/r3f';
 
 /**
  * The default mime type for the extension.
@@ -17,7 +20,7 @@ const CLASS_NAME = 'mimerenderer-json_orbit';
 /**
  * A widget for rendering json_orbit.
  */
-export class OutputWidget extends Widget implements IRenderMime.IRenderer {
+export class OutputWidget extends ReactWidget {
   /**
    * Construct a new output widget.
    */
@@ -32,9 +35,15 @@ export class OutputWidget extends Widget implements IRenderMime.IRenderer {
    */
   renderModel(model: IRenderMime.IMimeModel): Promise<void> {
     const data = model.data[this._mimeType] as JSONObject;
+    console.log(this);
+    console.log('norbert');
     this.node.textContent = JSON.stringify(data);
-    
+
     return Promise.resolve();
+  }
+
+  render() {
+    return <Planetarium />;
   }
 
   private _mimeType: string;

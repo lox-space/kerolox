@@ -18,7 +18,6 @@ describe("Simon-Bretagnon Ephemeris", () => {
     expect(v.z).toBeCloseTo(0.8929809783898904786e-2);
   });
   test("Date outside range", () => {
-    const spy = jest.spyOn(global.console, "warn").mockImplementation();
     const p = new Vector3();
     const v = new Vector3();
     const date1 = 2400000.5;
@@ -26,15 +25,12 @@ describe("Simon-Bretagnon Ephemeris", () => {
 
     EPHEMERIDES.earthMoonBarycenter.state(p, v, date1, date2, { unit: "au" });
 
-    expect(spy).toHaveBeenCalled();
     expect(p.x).toBeCloseTo(0.9308038666832975759);
     expect(p.y).toBeCloseTo(0.3258319040261346);
     expect(p.z).toBeCloseTo(0.142279454448114056);
     expect(v.x).toBeCloseTo(-0.6429458958255170006e-2);
     expect(v.y).toBeCloseTo(0.1468570657704237764e-1);
     expect(v.z).toBeCloseTo(0.6406996426270981189e-2);
-
-    spy.mockRestore();
   });
   test("Functional API", () => {
     const p = new Vector3();

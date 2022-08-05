@@ -65,22 +65,14 @@ export class Ephemeris {
     this.sl = Float32Array.from(sl);
   }
 
-  state(
-    pos: Vector3,
-    vel: Vector3,
-    date1: number,
-    date2: number,
-    opts: Options = { unit: "km" }
-  ) {
-    const unit = opts?.unit;
-
+  meanElements(date1: number, date2: number = 0.0) {
     /* Time: Julian millennia since J2000.0. */
     const t = (date1 - DJ00 + date2) / DJM;
 
     /* OK status unless remote date. */
-    if (t > 1) console.warn("The requested date is later than the year 3000.");
-    if (t < -1)
-      console.warn("The requested date is earlier than the year 1000.");
+    // if (t > 1) console.warn("The requested date is later than the year 3000.");
+    // if (t < -1)
+    //   console.warn("The requested date is earlier than the year 1000.");
 
     /* Compute the mean elements. */
     let da = this.a[0] + (this.a[1] + this.a[2] * t) * t;
@@ -123,7 +115,7 @@ export class Ephemeris {
       dae = (am - ae + de * Math.sin(ae)) / (1.0 - de * Math.cos(ae));
       ae += dae;
       k++;
-      if (k === KMAX - 1) console.warn("Not converged.");
+      // if (k === KMAX - 1) console.warn("Not converged.");
     }
 
     /* True anomaly. */
@@ -134,34 +126,63 @@ export class Ephemeris {
         Math.sqrt((1.0 + de) / (1.0 - de)) * Math.sin(ae2),
         Math.cos(ae2)
       );
-
-    /* Distance (au) and speed (radians per day). */
-    const r = da * (1.0 - de * Math.cos(ae));
-    const v = GK * Math.sqrt((1.0 + 1.0 / this.amas) / (da * da * da));
-
     const si2 = Math.sin(di / 2.0);
     const xq = si2 * Math.cos(dom);
     const xp = si2 * Math.sin(dom);
+
     const tl = at + dp;
     const xsw = Math.sin(tl);
     const xcw = Math.cos(tl);
+
+    return { da, de, di, dp, ae, xp, xq, xsw, xcw };
+  }
+
+  position(
+    pos: Vector3,
+    date1: number,
+    date2: number = 0.0,
+    opts: Options = { unit: "km" }
+  ) {
+    const pFactor = opts.unit === "km" ? AU : 1.0;
+
+    const { da, de, di, ae, xp, xq, xsw, xcw } = this.meanElements(
+      date1,
+      date2
+    );
+
     const xm2 = 2.0 * (xp * xcw - xq * xsw);
-    const xf = da / Math.sqrt(1 - de * de);
     const ci2 = Math.cos(di / 2.0);
-    const xms = (de * Math.sin(dp) + xsw) * xf;
-    const xmc = (de * Math.cos(dp) + xcw) * xf;
-    const xpxq2 = 2 * xp * xq;
 
-    const pFactor = unit === "km" ? AU : 1.0;
-    const vFactor = unit === "km" ? AU * (1 / 86400) : 1.0;
+    const r = da * (1.0 - de * Math.cos(ae));
 
-    /* Position (J2000.0 ecliptic x,y,z in au). */
     const x = r * (xcw - xm2 * xp) * pFactor;
     const y = r * (xsw + xm2 * xq) * pFactor;
     const z = r * (-xm2 * ci2) * pFactor;
 
     /* Rotate to equatorial. */
     pos.set(x, y * COSEPS - z * SINEPS, y * SINEPS + z * COSEPS);
+  }
+
+  velocity(
+    vel: Vector3,
+    date1: number,
+    date2: number = 0.0,
+    opts: Options = { unit: "km" }
+  ) {
+    const vFactor = opts.unit === "km" ? AU * (1 / 86400) : 1.0;
+
+    const { da, de, di, dp, xp, xq, xsw, xcw } = this.meanElements(
+      date1,
+      date2
+    );
+
+    const v = GK * Math.sqrt((1.0 + 1.0 / this.amas) / (da * da * da));
+
+    const xf = da / Math.sqrt(1 - de * de);
+    const ci2 = Math.cos(di / 2.0);
+    const xms = (de * Math.sin(dp) + xsw) * xf;
+    const xmc = (de * Math.cos(dp) + xcw) * xf;
+    const xpxq2 = 2 * xp * xq;
 
     /* Velocity (J2000.0 ecliptic xdot,ydot,zdot in au/d). */
     const vx = v * ((-1.0 + 2.0 * xp * xp) * xms + xpxq2 * xmc) * vFactor;
@@ -170,6 +191,17 @@ export class Ephemeris {
 
     /* Rotate to equatorial. */
     vel.set(vx, vy * COSEPS - vz * SINEPS, vy * SINEPS + vz * COSEPS);
+  }
+
+  state(
+    pos: Vector3,
+    vel: Vector3,
+    date1: number,
+    date2: number = 0.0,
+    opts: Options = { unit: "km" }
+  ) {
+    this.position(pos, date1, date2, opts);
+    this.velocity(vel, date1, date2, opts);
   }
 }
 
@@ -297,11 +329,27 @@ export const EPHEMERIDES = {
 };
 export type Planet = keyof typeof EPHEMERIDES;
 
+export const position = (
+  pos: Vector3,
+  planet: Planet,
+  date1: number,
+  date2: number = 0.0,
+  opts: Options = { unit: "km" }
+) => EPHEMERIDES[planet].position(pos, date1, date2, opts);
+
+export const velocity = (
+  vel: Vector3,
+  planet: Planet,
+  date1: number,
+  date2: number = 0.0,
+  opts: Options = { unit: "km" }
+) => EPHEMERIDES[planet].velocity(vel, date1, date2, opts);
+
 export const state = (
   pos: Vector3,
   vel: Vector3,
   planet: Planet,
   date1: number,
-  date2: number,
+  date2: number = 0.0,
   opts: Options = { unit: "km" }
 ) => EPHEMERIDES[planet].state(pos, vel, date1, date2, opts);

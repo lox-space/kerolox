@@ -17,22 +17,23 @@
   },
   "devDependencies": {
     "@openastrodynamics/tsconfig": "*",
-    "@types/react": "^18.0.14",
-    "@types/react-dom": "^18.0.5",
-    "@types/three": "^0.141.0",
-    "eslint": "^8.18.0",
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "@types/three": "^0.143.0",
+    "eslint": "^8.21.0",
     "eslint-config-openastrodynamics": "*",
     "react": "^18.2.0",
-    "tsup": "^6.1.2",
+    "tsup": "^6.2.1",
     "typescript": "^4.7.4"
   },
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@react-three/drei": "^9.14.3",
-    "@react-three/fiber": "^8.0.27",
-    "three": "^0.141.0",
-    "zustand": "^4.0.0-rc.1"
+    "@openastrodynamics/core": "*",
+    "@react-three/drei": "^9.19.6",
+    "@react-three/fiber": "^8.3.0",
+    "three": "^0.143.0",
+    "zustand": "^4.0.0"
   }
 }

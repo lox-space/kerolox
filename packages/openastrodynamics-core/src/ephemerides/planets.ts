@@ -281,4 +281,12 @@ export const EPHEMERIDES = {
     [-47645, 11647, 2166, 3194, 679, 0, -244, -419, -2531, 48]
   ),
 };
-export type Planets = keyof typeof EPHEMERIDES;
+export type Planet = keyof typeof EPHEMERIDES;
+
+export const state = (
+  pos: Vector3,
+  vel: Vector3,
+  planet: Planet,
+  date1: number,
+  date2: number
+) => EPHEMERIDES[planet].state(pos, vel, date1, date2);

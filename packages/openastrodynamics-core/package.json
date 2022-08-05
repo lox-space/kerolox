@@ -13,19 +13,24 @@
     "build": "tsup src/index.tsx --format esm,cjs --dts --external react",
     "dev": "tsup src/index.tsx --format esm,cjs --watch --dts --external react",
     "lint": "TIMING=1 eslint src/**/*.ts* --fix",
-    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
+    "test": "jest"
   },
   "devDependencies": {
     "@openastrodynamics/tsconfig": "*",
-    "@types/react": "^18.0.14",
-    "@types/react-dom": "^18.0.5",
+    "@types/jest": "^28.1.6",
+    "@types/three": "^0.143.0",
     "eslint": "^8.18.0",
     "eslint-config-openastrodynamics": "*",
-    "react": "^18.2.0",
+    "jest": "^28.1.3",
+    "ts-jest": "^28.0.7",
     "tsup": "^6.1.2",
     "typescript": "^4.7.4"
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "three": "^0.143.0"
   }
 }

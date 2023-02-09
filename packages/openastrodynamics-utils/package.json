@@ -16,14 +16,14 @@
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "devDependencies": {
-    "@openastrodynamics/tsconfig": "*",
-    "@types/react": "^18.0.14",
-    "@types/react-dom": "^18.0.5",
-    "eslint": "^8.18.0",
-    "eslint-config-openastrodynamics": "*",
+    "@openastrodynamics/tsconfig": "workspace:^0.0.0",
+    "@types/react": "^18.0.26",
+    "@types/react-dom": "^18.0.10",
+    "eslint": "^8.31.0",
+    "eslint-config-openastrodynamics": "workspace:^0.0.0",
     "react": "^18.2.0",
-    "tsup": "^6.1.2",
-    "typescript": "^4.7.4"
+    "tsup": "^6.5.0",
+    "typescript": "^4.9.4"
   },
   "publishConfig": {
     "access": "public"

@@ -14,12 +14,14 @@
     "dev": "tsup src/index.ts --format esm,cjs --watch --dts",
     "lint": "TIMING=1 eslint src/**/*.ts* --fix",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
+    "benchmark": "npx ts-node benchmark/benchmarks.ts",
     "test": "jest"
   },
   "devDependencies": {
     "@openastrodynamics/tsconfig": "*",
     "@types/jest": "^28.1.6",
     "@types/three": "^0.143.0",
+    "benny": "^3.7.1",
     "eslint": "^8.18.0",
     "eslint-config-openastrodynamics": "*",
     "jest": "^28.1.3",

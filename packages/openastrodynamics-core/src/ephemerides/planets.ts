@@ -1,4 +1,5 @@
 import { Vector3 } from "three";
+import { TO_SCREEN } from "../constants";
 import { modpi, TWOPI } from "../math";
 import { SECONDS_PER_DAY } from "../time";
 
@@ -18,7 +19,8 @@ const COSEPS = 0.9174820620691818;
 const KMAX = 10;
 
 type Options = {
-  unit: "km" | "au";
+  unit?: "km" | "au";
+  toScreen?: boolean;
 };
 
 export class Ephemeris {
@@ -142,7 +144,7 @@ export class Ephemeris {
     pos: Vector3,
     date1: number,
     date2: number = 0.0,
-    opts: Options = { unit: "km" }
+    opts: Options = { unit: "km", toScreen: false }
   ) {
     const { da, de, di, ae, xp, xq, xsw, xcw } = this.meanElements(
       date1,
@@ -161,13 +163,17 @@ export class Ephemeris {
 
     /* Rotate to equatorial. */
     pos.set(x, y * COSEPS - z * SINEPS, y * SINEPS + z * COSEPS);
+
+    if (opts.toScreen) {
+      pos.applyMatrix4(TO_SCREEN);
+    }
   }
 
   velocity(
     vel: Vector3,
     date1: number,
     date2: number = 0.0,
-    opts: Options = { unit: "km" }
+    opts: Options = { unit: "km", toScreen: false }
   ) {
     const { da, de, di, dp, xp, xq, xsw, xcw } = this.meanElements(
       date1,
@@ -190,6 +196,10 @@ export class Ephemeris {
 
     /* Rotate to equatorial. */
     vel.set(vx, vy * COSEPS - vz * SINEPS, vy * SINEPS + vz * COSEPS);
+
+    if (opts.toScreen) {
+      vel.applyMatrix4(TO_SCREEN);
+    }
   }
 
   state(
@@ -197,7 +207,7 @@ export class Ephemeris {
     vel: Vector3,
     date1: number,
     date2: number = 0.0,
-    opts: Options = { unit: "km" }
+    opts: Options = { unit: "km", toScreen: false }
   ) {
     this.position(pos, date1, date2, opts);
     this.velocity(vel, date1, date2, opts);
@@ -333,7 +343,7 @@ export const position = (
   planet: Planet,
   date1: number,
   date2: number = 0.0,
-  opts: Options = { unit: "km" }
+  opts?: Options
 ) => EPHEMERIDES[planet].position(pos, date1, date2, opts);
 
 export const velocity = (
@@ -341,7 +351,7 @@ export const velocity = (
   planet: Planet,
   date1: number,
   date2: number = 0.0,
-  opts: Options = { unit: "km" }
+  opts?: Options
 ) => EPHEMERIDES[planet].velocity(vel, date1, date2, opts);
 
 export const state = (
@@ -350,5 +360,5 @@ export const state = (
   planet: Planet,
   date1: number,
   date2: number = 0.0,
-  opts: Options = { unit: "km" }
+  opts?: Options
 ) => EPHEMERIDES[planet].state(pos, vel, date1, date2, opts);

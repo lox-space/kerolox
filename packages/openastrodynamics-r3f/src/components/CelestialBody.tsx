@@ -1,14 +1,8 @@
-import {
-  Planet,
-  unixToJulian,
-  position,
-  EPHEMERIDES,
-} from "@openastrodynamics/core";
+import { Planet, position, unixToJulian } from "@openastrodynamics/core";
 import { Sphere } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
-import * as React from "react";
-import { Mesh, Vector3 } from "three";
+import { Mesh } from "three";
 
 type Props = {
   body: Planet;
@@ -21,8 +15,7 @@ const CelestialBody = ({ body, scale = 1.0 }: Props) => {
   useFrame(() => {
     const { date1, date2 } = unixToJulian(1e-3 * Date.now());
     if (ref.current) {
-      // position(ref.current.position, body, date1, date2);
-      EPHEMERIDES[body].position(ref.current.position, date1, date2);
+      position(ref.current.position, body, date1, date2, { toScreen: true });
     }
   });
 

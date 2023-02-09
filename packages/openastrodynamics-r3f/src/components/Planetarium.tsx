@@ -1,6 +1,5 @@
 import { OrbitControls, PerspectiveCamera, Stats } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import * as React from "react";
 import CelestialBody from "./CelestialBody";
 import StarMap from "./StarMap";
 

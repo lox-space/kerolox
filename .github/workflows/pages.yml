@@ -15,17 +15,21 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v2
 
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 7
+
       - name: Setup Node.js environment
         uses: actions/setup-node@v2
         with:
           node-version: 16
-          cache: 'npm'
+          cache: 'pnpm'
 
       - name: Install Dependencies
-        run: npm install
+        run: pnpm install
 
       - name: Build
-        run: npm run build
+        run: pnpm run build
 
       - name: Deploy to github pages
         uses: JamesIves/github-pages-deploy-action@v4.3.3

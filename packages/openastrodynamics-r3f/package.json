@@ -16,24 +16,25 @@
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "devDependencies": {
-    "@openastrodynamics/tsconfig": "*",
-    "@types/react": "^18.0.15",
-    "@types/react-dom": "^18.0.6",
-    "@types/three": "^0.143.0",
-    "eslint": "^8.21.0",
-    "eslint-config-openastrodynamics": "*",
+    "@openastrodynamics/tsconfig": "workspace:^0.0.0",
+    "@types/react": "^18.0.26",
+    "@types/react-dom": "^18.0.10",
+    "@types/three": "^0.147.1",
+    "eslint": "^8.31.0",
+    "eslint-config-openastrodynamics": "workspace:^0.0.0",
     "react": "^18.2.0",
-    "tsup": "^6.2.1",
-    "typescript": "^4.7.4"
+    "react-dom": "^18.2.0",
+    "tsup": "^6.5.0",
+    "typescript": "^4.9.4"
   },
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@openastrodynamics/core": "*",
-    "@react-three/drei": "^9.19.6",
-    "@react-three/fiber": "^8.3.0",
-    "three": "^0.143.0",
-    "zustand": "^4.0.0"
+    "@openastrodynamics/core": "workspace:^0.0.0",
+    "@react-three/drei": "^9.50.4",
+    "@react-three/fiber": "^8.10.0",
+    "three": "^0.148.0",
+    "zustand": "^4.2.0"
   }
 }

@@ -5,10 +5,13 @@ import Root from "./routes/Root";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import Keplerian from "./routes/Keplerian";
 
-const router = createBrowserRouter([
-  { path: "/", element: <Root /> },
-  { path: "/keplerian", element: <Keplerian /> },
-]);
+const router = createBrowserRouter(
+  [
+    { path: "/", element: <Root /> },
+    { path: "/keplerian", element: <Keplerian /> },
+  ],
+  { basename: "/planetarium" }
+);
 
 const theme = extendTheme({
   styles: {

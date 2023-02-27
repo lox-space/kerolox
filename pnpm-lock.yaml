@@ -93,6 +93,20 @@ importers:
       tsup: 6.6.0_typescript@4.9.5
       typescript: 4.9.5
 
+  packages/openastrodynamics-ephemeris-server:
+    specifiers:
+      '@openastrodynamics/tsconfig': workspace:^0.0.0
+      eslint: ^8.33.0
+      eslint-config-openastrodynamics: workspace:^0.0.0
+      tsup: ^6.6.0
+      typescript: ^4.9.5
+    devDependencies:
+      '@openastrodynamics/tsconfig': link:../openastrodynamics-tsconfig
+      eslint: 8.33.0
+      eslint-config-openastrodynamics: link:../eslint-config-openastrodynamics
+      tsup: 6.6.0_typescript@4.9.5
+      typescript: 4.9.5
+
   packages/openastrodynamics-r3f:
     specifiers:
       '@openastrodynamics/core': workspace:^0.0.0
@@ -116,6 +130,35 @@ importers:
       '@react-three/fiber': 8.11.0_xor7byvqlg4baqj6ymfbcmaax4
       three: 0.149.0
       zustand: 4.3.2_react@18.2.0
+    devDependencies:
+      '@openastrodynamics/tsconfig': link:../openastrodynamics-tsconfig
+      '@types/react': 18.0.27
+      '@types/react-dom': 18.0.10
+      '@types/three': 0.149.0
+      eslint: 8.33.0
+      eslint-config-openastrodynamics: link:../eslint-config-openastrodynamics
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      tsup: 6.6.0_typescript@4.9.5
+      typescript: 4.9.5
+
+  packages/openastrodynamics-react:
+    specifiers:
+      '@openastrodynamics/core': workspace:^0.0.0
+      '@openastrodynamics/tsconfig': workspace:^0.0.0
+      '@types/react': ^18.0.27
+      '@types/react-dom': ^18.0.10
+      '@types/three': ^0.149.0
+      eslint: ^8.33.0
+      eslint-config-openastrodynamics: workspace:^0.0.0
+      react: ^18.2.0
+      react-dom: ^18.2.0
+      three: ^0.149.0
+      tsup: ^6.6.0
+      typescript: ^4.9.5
+    dependencies:
+      '@openastrodynamics/core': link:../openastrodynamics-core
+      three: 0.149.0
     devDependencies:
       '@openastrodynamics/tsconfig': link:../openastrodynamics-tsconfig
       '@types/react': 18.0.27

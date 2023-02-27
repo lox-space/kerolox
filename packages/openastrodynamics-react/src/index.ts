@@ -1,1 +1,1 @@
-export { default } from "./components/Planetarium";
+export const foo = () => "foo";

@@ -78,3 +78,45 @@ export const mod2pi = (a: number) => {
 
   return w;
 };
+
+const rtolDefault = (x: number, y: number, atol: number) =>
+  atol > 0 ? 0 : Math.sqrt(Number.EPSILON);
+
+type Opts = {
+  atol?: number;
+  rtol?: number;
+  nans?: boolean;
+  norm?: (x: number) => number;
+};
+
+export const isApprox = (
+  x: number,
+  y: number,
+  { atol = 0, rtol = undefined, nans = false, norm = Math.abs }: Opts = {}
+) => {
+  rtol = rtol ?? rtolDefault(x, y, atol);
+  return (
+    x === y ||
+    (Number.isFinite(x) &&
+      Number.isFinite(y) &&
+      norm(x - y) <= Math.max(atol, rtol * Math.max(norm(x), norm(y)))) ||
+    (nans && Number.isNaN(x) && Number.isNaN(y))
+  );
+};
+
+export const newton = (
+  x0: number,
+  func: (x: number) => number,
+  derivative: (x: number) => number,
+  { maxiter: maxIter = 50, tol = Math.sqrt(Number.EPSILON) } = {}
+) => {
+  let p0 = x0;
+  for (let i = 1; i < maxIter; i++) {
+    let p = p0 - func(p0) / derivative(p0);
+    if (Math.abs(p - p0) < tol) {
+      return p;
+    }
+    p0 = p;
+  }
+  throw new Error("Not converged.");
+};

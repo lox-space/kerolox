@@ -61,9 +61,18 @@
 //   LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 //   NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 //   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-//
+
+import { Vector3 } from "three";
+
 export const PI = Math.PI;
 export const TWOPI = 2 * PI;
+
+export const X_AXIS = new Vector3(1, 0, 0);
+export const Y_AXIS = new Vector3(0, 1, 0);
+export const Z_AXIS = new Vector3(0, 0, 1);
+
+export const radToDeg = (rad: number) => (rad * 180) / PI;
+export const degToRad = (deg: number) => (deg * PI) / 180;
 
 export const modpi = (a: number) => {
   let w = a % TWOPI;
@@ -78,6 +87,9 @@ export const mod2pi = (a: number) => {
 
   return w;
 };
+
+export const normalize2pi = (a: number, center = 0.0) =>
+  a - TWOPI * Math.floor((a + PI - center) / TWOPI);
 
 const rtolDefault = (x: number, y: number, atol: number) =>
   atol > 0 ? 0 : Math.sqrt(Number.EPSILON);
@@ -104,15 +116,15 @@ export const isApprox = (
   );
 };
 
-export const newton = (
+export const newtonRaphson = (
   x0: number,
-  func: (x: number) => number,
-  derivative: (x: number) => number,
+  f: (x: number) => number,
+  fPrime: (x: number) => number,
   { maxiter: maxIter = 50, tol = Math.sqrt(Number.EPSILON) } = {}
 ) => {
   let p0 = x0;
   for (let i = 1; i < maxIter; i++) {
-    let p = p0 - func(p0) / derivative(p0);
+    let p = p0 - f(p0) / fPrime(p0);
     if (Math.abs(p - p0) < tol) {
       return p;
     }
@@ -120,3 +132,5 @@ export const newton = (
   }
   throw new Error("Not converged.");
 };
+
+export const azimuth = (v: Vector3) => Math.atan2(v.y, v.x);

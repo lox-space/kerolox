@@ -1,6 +1,6 @@
 import { isApprox, mod2pi, modpi } from "../src/math";
 
-describe("isapprox", () => {
+describe("isApprox", () => {
   test("floating point", () => {
     expect(isApprox(4.00000000000001, 4.0)).toBeTruthy();
     expect(isApprox(5.0, 4.999999999999993)).toBeTruthy();

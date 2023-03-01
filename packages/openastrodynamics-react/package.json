@@ -16,6 +16,7 @@
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "devDependencies": {
+    "@babel/core": "^7.20.12",
     "@openastrodynamics/tsconfig": "workspace:^0.0.0",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
@@ -31,7 +32,11 @@
     "access": "public"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.4.9",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "@openastrodynamics/core": "workspace:^0.0.0",
+    "framer-motion": "^9.0.2",
     "three": "^0.149.0"
   }
 }

@@ -144,6 +144,10 @@ importers:
 
   packages/openastrodynamics-react:
     specifiers:
+      '@babel/core': ^7.20.12
+      '@chakra-ui/react': ^2.4.9
+      '@emotion/react': ^11.10.5
+      '@emotion/styled': ^11.10.5
       '@openastrodynamics/core': workspace:^0.0.0
       '@openastrodynamics/tsconfig': workspace:^0.0.0
       '@types/react': ^18.0.27
@@ -151,15 +155,21 @@ importers:
       '@types/three': ^0.149.0
       eslint: ^8.33.0
       eslint-config-openastrodynamics: workspace:^0.0.0
+      framer-motion: ^9.0.2
       react: ^18.2.0
       react-dom: ^18.2.0
       three: ^0.149.0
       tsup: ^6.6.0
       typescript: ^4.9.5
     dependencies:
+      '@chakra-ui/react': 2.4.9_rmkrbeisirqa7nsh5de33nr2se
+      '@emotion/react': 11.10.5_yxdp3dl3eazy3vwpbmv4fq727a
+      '@emotion/styled': 11.10.5_4erqsq3n444jecyuvaxwc5b3vi
       '@openastrodynamics/core': link:../openastrodynamics-core
+      framer-motion: 9.0.2_biqbaboplfbrettd7655fr4n2y
       three: 0.149.0
     devDependencies:
+      '@babel/core': 7.20.12
       '@openastrodynamics/tsconfig': link:../openastrodynamics-tsconfig
       '@types/react': 18.0.27
       '@types/react-dom': 18.0.10

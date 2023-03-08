@@ -1,11 +1,11 @@
 import * as React from "react";
 import { createRoot } from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import Root from "./routes/Root";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import Keplerian from "./routes/Keplerian";
 
-const router = createBrowserRouter(
+const router = createHashRouter(
   [
     { path: "/", element: <Root /> },
     { path: "/keplerian", element: <Keplerian /> },

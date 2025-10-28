@@ -1,6 +1,7 @@
 {
   "name": "@lox-space/planetarium",
   "private": true,
+  "type": "module",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
@@ -10,22 +11,20 @@
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "dependencies": {
-    "@chakra-ui/react": "^2.4.9",
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
-    "@lox-space/r3f": "workspace:^0.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.8.1"
+    "@lox-space/r3f": "workspace:^",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.9.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.12",
-    "@lox-space/tsconfig": "workspace:^0.0.0",
-    "@types/react": "^18.0.27",
-    "@types/react-dom": "^18.0.10",
-    "@vitejs/plugin-react": "^3.1.0",
-    "framer-motion": "^9.0.2",
-    "typescript": "^4.9.5",
-    "vite": "^4.1.1"
+    "@babel/core": "^7.28.5",
+    "@lox-space/tsconfig": "workspace:^",
+    "@tailwindcss/vite": "^4.1.0",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@vitejs/plugin-react": "^5.1.0",
+    "tailwindcss": "^4.1.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.12"
   }
 }

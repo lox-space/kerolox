@@ -16,25 +16,25 @@
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "devDependencies": {
-    "@lox-space/tsconfig": "workspace:^0.0.0",
-    "@types/react": "^18.0.27",
-    "@types/react-dom": "^18.0.10",
-    "@types/three": "^0.149.0",
-    "eslint": "^8.33.0",
-    "eslint-config-lox-space": "workspace:^0.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "tsup": "^6.6.0",
-    "typescript": "^4.9.5"
+    "@lox-space/tsconfig": "workspace:^",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@types/three": "^0.180.0",
+    "eslint": "^9.38.0",
+    "eslint-config-lox-space": "workspace:^",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.3"
   },
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@lox-space/core": "workspace:^0.0.0",
-    "@react-three/drei": "^9.56.20",
-    "@react-three/fiber": "^8.11.0",
-    "three": "^0.149.0",
-    "zustand": "^4.3.2"
+    "@lox-space/core": "workspace:^",
+    "@react-three/drei": "^10.7.6",
+    "@react-three/fiber": "^9.4.0",
+    "three": "^0.180.0",
+    "zustand": "^5.0.8"
   }
 }

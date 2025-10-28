@@ -11,6 +11,10 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # to create release commits and tags
+      pull-requests: write # to create release pull requests
+      id-token: write # to enable trusted publishing via OIDC
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
@@ -37,4 +41,4 @@ jobs:
           publish: pnpm run release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true

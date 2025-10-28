@@ -1,7 +1,7 @@
 {
   "name": "@lox-space/wasm",
   "version": "0.1.0",
-  "description": "WebAssembly bindings for Lox Space orbital mechanics",
+  "description": "WebAssembly bindings for Lox (https://github.com/lox-space/lox)",
   "type": "module",
   "files": [
     "pkg"

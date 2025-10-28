@@ -7,3 +7,6 @@ export const TO_SCREEN = new Matrix4().set(
   0, 1, 0, 0,
   0, 0, 0, 1
 );
+
+/** Speed of light in meters per second */
+export const SPEED_OF_LIGHT = 299792458;

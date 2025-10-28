@@ -1,4 +1,4 @@
-import { Planet, position, unixToJulian } from "@openastrodynamics/core";
+import { Planet, position, unixToJulian } from "@lox-space/core";
 import { Sphere } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";

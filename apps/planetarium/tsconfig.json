@@ -1,6 +1,6 @@
 {
   "exclude": ["node_modules"],
-  "extends": "@openastrodynamics/tsconfig/vite.json",
+  "extends": "@lox-space/tsconfig/vite.json",
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "dist"

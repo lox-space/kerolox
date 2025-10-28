@@ -1,5 +1,7 @@
 {
-  "pipeline": {
+  "$schema": "https://turbo.build/schema.json",
+  "ui": "tui",
+  "tasks": {
     "build": {
       "outputs": [
         "dist/**",
@@ -16,10 +18,11 @@
       "dependsOn": []
     },
     "lint": {
-      "outputs": []
+      "cache": true
     },
     "dev": {
-      "cache": false
+      "cache": false,
+      "persistent": true
     },
     "clean": {
       "cache": false

@@ -1,5 +1,6 @@
 {
   "private": true,
+  "packageManager": "pnpm@9.15.0",
   "workspaces": [
     "packages/*",
     "apps/*"
@@ -16,10 +17,10 @@
     "release": "turbo run build --filter=docs^... && changeset publish"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.26.0",
-    "eslint": "^8.33.0",
-    "eslint-config-openastrodynamics": "workspace:^0.0.0",
-    "prettier": "^2.8.4",
-    "turbo": "^1.7.4"
+    "@changesets/cli": "^2.27.11",
+    "eslint": "^9.18.0",
+    "eslint-config-lox-space": "workspace:^0.0.0",
+    "prettier": "^3.4.2",
+    "turbo": "^2.5.0"
   }
 }

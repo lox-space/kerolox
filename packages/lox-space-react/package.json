@@ -1,5 +1,5 @@
 {
-  "name": "@openastrodynamics/react",
+  "name": "@lox-space/react",
   "version": "0.0.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -17,12 +17,12 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
-    "@openastrodynamics/tsconfig": "workspace:^0.0.0",
+    "@lox-space/tsconfig": "workspace:^0.0.0",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@types/three": "^0.149.0",
     "eslint": "^8.33.0",
-    "eslint-config-openastrodynamics": "workspace:^0.0.0",
+    "eslint-config-lox-space": "workspace:^0.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tsup": "^6.6.0",
@@ -35,7 +35,7 @@
     "@chakra-ui/react": "^2.4.9",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
-    "@openastrodynamics/core": "workspace:^0.0.0",
+    "@lox-space/core": "workspace:^0.0.0",
     "framer-motion": "^9.0.2",
     "three": "^0.149.0"
   }

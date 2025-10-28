@@ -1,5 +1,5 @@
 {
-  "name": "@openastrodynamics/planetarium",
+  "name": "@lox-space/planetarium",
   "private": true,
   "version": "0.0.0",
   "scripts": {
@@ -13,14 +13,14 @@
     "@chakra-ui/react": "^2.4.9",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
-    "@openastrodynamics/r3f": "workspace:^0.0.0",
+    "@lox-space/r3f": "workspace:^0.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
-    "@openastrodynamics/tsconfig": "workspace:^0.0.0",
+    "@lox-space/tsconfig": "workspace:^0.0.0",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@vitejs/plugin-react": "^3.1.0",

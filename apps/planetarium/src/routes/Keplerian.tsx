@@ -1,6 +1,6 @@
 import { Button, Flex } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import Planetarium from "@openastrodynamics/r3f";
+import Planetarium from "@lox-space/r3f";
 
 const Keplerian = () => {
   return (

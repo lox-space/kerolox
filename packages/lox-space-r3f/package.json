@@ -1,5 +1,5 @@
 {
-  "name": "@openastrodynamics/r3f",
+  "name": "@lox-space/r3f",
   "version": "0.0.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -16,12 +16,12 @@
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "devDependencies": {
-    "@openastrodynamics/tsconfig": "workspace:^0.0.0",
+    "@lox-space/tsconfig": "workspace:^0.0.0",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@types/three": "^0.149.0",
     "eslint": "^8.33.0",
-    "eslint-config-openastrodynamics": "workspace:^0.0.0",
+    "eslint-config-lox-space": "workspace:^0.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tsup": "^6.6.0",
@@ -31,7 +31,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@openastrodynamics/core": "workspace:^0.0.0",
+    "@lox-space/core": "workspace:^0.0.0",
     "@react-three/drei": "^9.56.20",
     "@react-three/fiber": "^8.11.0",
     "three": "^0.149.0",

@@ -1,5 +1,5 @@
 {
-  "extends": "@openastrodynamics/tsconfig/base.json",
+  "extends": "@lox-space/tsconfig/base.json",
   "include": ["."],
   "exclude": ["dist", "build", "node_modules"],
   "compilerOptions": {

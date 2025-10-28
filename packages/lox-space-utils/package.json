@@ -1,5 +1,5 @@
 {
-  "name": "@openastrodynamics/utils",
+  "name": "@lox-space/utils",
   "version": "0.0.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -16,11 +16,11 @@
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "devDependencies": {
-    "@openastrodynamics/tsconfig": "workspace:^0.0.0",
+    "@lox-space/tsconfig": "workspace:^0.0.0",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "eslint": "^8.33.0",
-    "eslint-config-openastrodynamics": "workspace:^0.0.0",
+    "eslint-config-lox-space": "workspace:^0.0.0",
     "react": "^18.2.0",
     "tsup": "^6.6.0",
     "typescript": "^4.9.5"

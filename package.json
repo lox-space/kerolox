@@ -22,5 +22,11 @@
     "eslint-config-lox-space": "workspace:^",
     "prettier": "^3.6.2",
     "turbo": "^2.5.8"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "@tailwindcss/oxide"
+    ]
   }
 }

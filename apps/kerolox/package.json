@@ -12,7 +12,20 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.5",
+    "@astrojs/svelte": "^7.2.1",
+    "@lox-space/wasm": "workspace:*",
+    "@tailwindcss/vite": "^4.1.16",
+    "@threlte/core": "^8.1.8",
+    "@threlte/extras": "^9.5.5",
     "astro": "^5.15.1",
-    "typescript": "^5.9.3"
+    "svelte": "^5.42.3",
+    "svelte-tweakpane-ui": "^1.5.10",
+    "tailwindcss": "^4.1.16",
+    "three": "^0.180.0",
+    "typescript": "^5.9.3",
+    "vite-plugin-wasm": "^3.3.0"
+  },
+  "devDependencies": {
+    "@types/three": "^0.180.0"
   }
 }

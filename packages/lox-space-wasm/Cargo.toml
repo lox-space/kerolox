@@ -1,0 +1,20 @@
+[package]
+name = "lox-space-wasm"
+version = "0.1.0"
+authors = ["Lox Space Contributors"]
+edition = "2021"
+description = "WebAssembly bindings for Lox Space orbital mechanics"
+license = "MIT"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+wasm-bindgen = "0.2"
+
+[dependencies.console_error_panic_hook]
+version = "0.1"
+optional = true
+
+[features]
+default = ["console_error_panic_hook"]

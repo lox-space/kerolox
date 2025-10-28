@@ -1,0 +1,35 @@
+{
+  "name": "@lox-space/wasm",
+  "version": "0.1.0",
+  "description": "WebAssembly bindings for Lox Space orbital mechanics",
+  "type": "module",
+  "files": [
+    "pkg"
+  ],
+  "main": "./pkg/lox_space_wasm.js",
+  "types": "./pkg/lox_space_wasm.d.ts",
+  "exports": {
+    ".": {
+      "import": "./pkg/lox_space_wasm.js",
+      "types": "./pkg/lox_space_wasm.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "wasm-pack build --target web --out-dir pkg",
+    "test": "cargo test",
+    "clean": "cargo clean && rm -rf pkg"
+  },
+  "keywords": [
+    "wasm",
+    "webassembly",
+    "orbital-mechanics",
+    "astrodynamics",
+    "rust"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lox-space/kerolox",
+    "directory": "packages/lox-space-wasm"
+  }
+}

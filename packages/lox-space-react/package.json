@@ -28,6 +28,11 @@
     "tsup": "^8.5.0",
     "typescript": "^5.9.3"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lox-space/kerolox",
+    "directory": "packages/lox-space-react"
+  },
   "publishConfig": {
     "access": "public",
     "provenance": true

@@ -29,6 +29,11 @@
     "typescript": "^5.9.3",
     "vitest": "^3.0.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lox-space/kerolox",
+    "directory": "packages/lox-space-core"
+  },
   "publishConfig": {
     "access": "public",
     "provenance": true

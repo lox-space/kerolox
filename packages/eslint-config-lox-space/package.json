@@ -8,6 +8,11 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-react": "7.37.5"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lox-space/kerolox",
+    "directory": "packages/eslint-config-lox-space"
+  },
   "publishConfig": {
     "access": "public",
     "provenance": true

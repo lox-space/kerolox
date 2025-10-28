@@ -53,6 +53,9 @@ importers:
       '@lox-space/r3f':
         specifier: workspace:^
         version: link:../../packages/lox-space-r3f
+      '@lox-space/wasm':
+        specifier: workspace:^
+        version: link:../../packages/lox-space-wasm
       react:
         specifier: ^19.2.0
         version: 19.2.0

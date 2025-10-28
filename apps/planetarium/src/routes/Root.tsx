@@ -26,6 +26,17 @@ const Root = () => {
             Keplerian Elements
           </h5>
         </Link>
+        <Link
+          to="/wasm-demo"
+          className="block p-6 bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100"
+        >
+          <h5 className="text-xl font-bold tracking-tight text-gray-900">
+            WASM Demo
+          </h5>
+          <p className="mt-2 text-sm text-gray-600">
+            Interactive demonstration of WebAssembly orbital mechanics functions
+          </p>
+        </Link>
       </div>
     </div>
   );

@@ -58,7 +58,7 @@
   });
 </script>
 
-<div class="flex h-full w-full">
+<div class="fixed inset-0 overflow-hidden">
   <Canvas
     createRenderer={(canvas) => {
       return new WebGLRenderer({

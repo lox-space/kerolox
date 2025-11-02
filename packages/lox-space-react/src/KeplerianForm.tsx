@@ -12,8 +12,6 @@ type KeplerianForm = {
   setElements: (elements: KeplerianElements) => void;
 };
 
-const KeplerianForm = () => {
+export const KeplerianForm = () => {
   return <></>;
 };
-
-export default KeplerianForm;

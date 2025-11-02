@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "@lox-space/core": "workspace:^",
+    "@lox-space/wasm": "workspace:^",
     "three": "^0.180.0"
   }
 }

@@ -10,7 +10,7 @@ type Props = {
 };
 
 const CelestialBody = ({ body, scale = 1.0 }: Props) => {
-  const ref = useRef<Mesh>();
+  const ref = useRef<Mesh>(null!);
 
   useFrame(() => {
     const { date1, date2 } = unixToJulian(1e-3 * Date.now());

@@ -1,2 +1,2 @@
 export { KeplerianForm } from "./KeplerianForm";
-export { LoxProvider, useLox } from "./loxContext";
+export { useLox } from "./useLox";

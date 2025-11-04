@@ -1,7 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
 import Scene from "./Scene.tsx";
-import { LoxProvider } from "@lox-space/react";
 
 const KeplerianWidget = () => {
   return (
@@ -11,9 +10,7 @@ const KeplerianWidget = () => {
         gl={{ logarithmicDepthBuffer: true }}
       >
         <Suspense fallback={null}>
-          <LoxProvider fallback={null}>
-            <Scene />
-          </LoxProvider>
+          <Scene />
         </Suspense>
       </Canvas>
     </div>

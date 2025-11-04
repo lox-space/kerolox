@@ -2,6 +2,7 @@
   "name": "@lox-space/wasm",
   "version": "0.1.0",
   "description": "WebAssembly bindings for Lox (https://github.com/lox-space/lox)",
+  "license": "MPL-2.0",
   "type": "module",
   "files": [
     "pkg"
@@ -26,7 +27,6 @@
     "astrodynamics",
     "rust"
   ],
-  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/lox-space/kerolox",

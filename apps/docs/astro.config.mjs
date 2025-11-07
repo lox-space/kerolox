@@ -31,7 +31,10 @@ export default defineConfig({
         },
         {
           label: "Reference",
-          autogenerate: { directory: "reference" },
+          items: [
+            { label: "Rust (docs.rs)", link: "https://docs.rs/lox-space" },
+            { label: "Python", link: "https://python.lox-space.org" },
+          ],
         },
       ],
     }),
